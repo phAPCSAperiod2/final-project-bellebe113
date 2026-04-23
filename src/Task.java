@@ -1,37 +1,47 @@
-public class Task{
-    private String name;
-    private String subject;
-    private int dueDate;
-    private int timeEstimate;
-    private boolean completionStatus;
+import java.time.LocalDateTime;
 
-    public Task(String name, int dueDate, int timeEstimate)
-    {
+public class Task {
+    // Instance variables
+    private String name;
+    private LocalDateTime dueDate;
+    private String subject;
+    private double timeEstimate;
+    private boolean completionStatus;
+    // Constructor
+    public Task(String name, String subject, LocalDateTime dueDate, double timeEstimate) {
         this.name = name;
-        if(completionStatus == true)
-        {
-            this.completionStatus = 
-        }
+        this.subject = subject;
+        this.dueDate = dueDate;
+        this.timeEstimate = timeEstimate;
+        this.completionStatus = false;
     }
 
-    public String getName()
-    {
+    public void markComplete() {
+        completionStatus = true;
+    }
+
+    public boolean getCompletionStatus() {
+        return completionStatus;
+    }
+
+    public String getName() {
         return name;
     }
-    public String getSubject()
-    {
+
+    public String getSubject() {
         return subject;
     }
-    public int getDueDate()
-    {
+
+    public LocalDateTime getDueDate() {
         return dueDate;
     }
-    public int getTimeEstimate()
-    {
+
+    public double getTimeEstimate() {
         return timeEstimate;
     }
-    public String toString()
-    {
-        return name + "(" + timeEstimate + "hrs/mins)"
+
+    public String toString() {
+        return name + "(Subject: " + subject + ", Due: " + dueDate + ", Time: " + timeEstimate + "hrs, Status: "
+                + completionStatus + ")";
     }
 }
