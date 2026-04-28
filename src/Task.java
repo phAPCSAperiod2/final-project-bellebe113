@@ -1,13 +1,11 @@
-import java.time.LocalDateTime;
-
 public class Task {
-    // Instance variables
+    //Instance variable
     private String name;
     private LocalDateTime dueDate;
     private String subject;
     private double timeEstimate;
     private boolean completionStatus;
-    // Constructor
+
     public Task(String name, String subject, LocalDateTime dueDate, double timeEstimate) {
         this.name = name;
         this.subject = subject;
