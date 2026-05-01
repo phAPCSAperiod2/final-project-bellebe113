@@ -1,13 +1,12 @@
-import java.until.ArrayList;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Schedule {
     private ArrayList<Task> tasks;
-    private ArrayList<String> workTime;
 
     public Schedule() {
         tasks = new ArrayList<Task>();
-        workTime = new ArrayList<String>();
     }
 
     // Adds a task to the list
@@ -15,10 +14,10 @@ public class Schedule {
         tasks.add(t);
     }
 
-    // Removes a task
-    public boolean removeTask(Task t) {
+    // Removes a task by name
+    public boolean removeTask(String name) {
         for (int i = 0; i < tasks.size(); i++) {
-            if (task.get(i).getName().equals(name)) {
+            if (tasks.get(i).getName().equalsIgnoreCase(name)) {
                 tasks.remove(i);
                 return true;
             }
@@ -30,28 +29,42 @@ public class Schedule {
         return tasks;
     }
 
-public ArrayList<Task> getIncompleteTasks()
-{
-    ArrayList<Task> result = new ArrayList<>();
-    for(Task t : tasks){
-        if()
+    public ArrayList<Task> getIncompleteTasks() {
+        ArrayList<Task> result = new ArrayList<>();
+        for (Task t : tasks) {
+            if (!t.getCompletionStatus()) {
+                result.add(t);
+            }
+        }
+        return result;
     }
-    return result;
-}
 
     public void sortByDueDate() {
+        Collections.sort(tasks, new Comparator<Task>() {
+            public int compare(Task t1, Task t2) {
+                return t1.getDueDate().compareTo(t2.getDueDate());
 
+            }
+        });
     }
 
     public Task getNextTask() {
-        // Sort tasks
+        // Sort taskss
         // Return first incomplete task
-
+        sortByDueDate();
+        for (Task t : tasks) {
+            if (!t.getCompletionStatus()) {
+                return t;
+            }
+        }
         return null;
     }
 
     public void printSchedule() {
         // Loop thruough tasks and print each one
+        for (Task t : tasks) {
+            System.out.println(t);
+        }
     }
 
 }
