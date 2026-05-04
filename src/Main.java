@@ -42,7 +42,7 @@ public class Main {
                 System.out.print("Due day: ");
                 int day = input.nextInt();
 
-                System.out.print("Due hour (0-23): ");
+                System.out.print("Due hour: ");
                 int hour = input.nextInt();
 
                 System.out.print("Due minute: ");
