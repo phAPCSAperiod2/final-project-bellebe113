@@ -40,7 +40,7 @@ public class Task {
     }
 
     public String toString() {
-        return name + "(Subject: " + subject + ", Due: " + dueDate + ", Time: " + timeEstimate + "hrs, Status: "
+        return "-" + name + " (Subject: " + subject + ", Due: " + dueDate + ", Time: " + timeEstimate + "hrs, Completed: "
                 + completionStatus + ")";
     }
 }

@@ -39,11 +39,24 @@ public class Schedule {
         return result;
     }
 
+    public ArrayList<Task> getCompletedTasks() {
+        ArrayList<Task> result = new ArrayList<>();
+        for (Task t : tasks) {
+            if (t.getCompletionStatus()) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
     public void sortByDueDate() {
         Collections.sort(tasks, new Comparator<Task>() {
             public int compare(Task t1, Task t2) {
-                return t1.getDueDate().compareTo(t2.getDueDate());
-
+                int dateComparison = t1.getDueDate().compareTo(t2.getDueDate());
+                if (dateComparison != 0) {
+                    return dateComparison;
+                }
+                return Double.compare(t1.getTimeEstimate(), t2.getTimeEstimate());
             }
         });
     }
@@ -61,10 +74,31 @@ public class Schedule {
     }
 
     public void printSchedule() {
-        // Loop thruough tasks and print each one
-        for (Task t : tasks) {
-            System.out.println(t);
+        // Sort all tasks
+        sortByDueDate();
+
+        // Print incomplete tasks
+        System.out.println("\n--- INCOMPLETE TASKS ---");
+        ArrayList<Task> incomplete = getIncompleteTasks();
+        if (incomplete.isEmpty()) {
+            System.out.println("No incomplete tasks.");
+        } else {
+            for (Task t : incomplete) {
+                System.out.println(t);
+            }
         }
+
+        // Print completed tasks
+        System.out.println("\n--- COMPLETED TASKS ---");
+        ArrayList<Task> completed = getCompletedTasks();
+        if (completed.isEmpty()) {
+            System.out.println("No completed tasks.");
+        } else {
+            for (Task t : completed) {
+                System.out.println(t);
+            }
+        }
+        System.out.println();
     }
 
 }
